@@ -9,7 +9,7 @@
     "format:check": "prettier --check .",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "zip": "bestzip src.zip manifest.json background.js src/ README.md package.json --exclude=*.zip",
+    "zip": "node -e \"const fs=require('fs'), cp=require('child_process'), p=require('./package.json'), dir=`${p.name}-v${p.version}`; fs.mkdirSync(dir, {recursive:true}); const targets=['LICENSE', 'README.md', 'manifest.json', 'src', 'icons', 'img']; targets.forEach(t => { if(fs.existsSync(t)) { fs.cpSync(t, `${dir}/${t}`, {recursive:true}); } }); try { cp.execSync(`npx bestzip ${dir}.zip ${dir}`, {stdio:'inherit'}); } finally { fs.rmSync(dir, {recursive:true, force:true}); }\"",
     "build": "npm run format && npm run lint:fix && npm run zip"
   },
   "devDependencies": {
