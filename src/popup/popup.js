@@ -291,9 +291,11 @@ function sortTabsByLastAccessed(tabs) {
   return [...tabs].sort((a, b) => (b.lastAccessed || 0) - (a.lastAccessed || 0));
 }
 
+/* eslint-disable no-unused-vars */
 function pickGoTab(tabs) {
   return tabs.find((tab) => tab?.url && isGoUrl(tab.url)) || null;
 }
+/* eslint-enable no-unused-vars */
 
 async function findOpenGoTab() {
   const allTabs = await chrome.tabs.query({});
