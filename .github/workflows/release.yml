@@ -1,0 +1,43 @@
+name: Production Release Build
+
+on:
+  push:
+    tags:
+      - "v*" # Triggers the workflow only when you push tags matching v1.0, v0.1.0, etc.
+
+jobs:
+  release:
+    name: Build & Publish Release Artifact
+    runs-on: ubuntu-latest
+
+    # Grants permission to the workflow token to write releases
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js Runtime
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: "npm"
+
+      - name: Install Development Dependencies
+        run: npm ci
+
+      - name: Run Build (Format, Lint, and Zip Archive Production)
+        run: npm run build
+
+      - name: Create GitHub Release & Upload Production Zip
+        uses: softprops/action-gh-release@v2
+        with:
+          name: Release ${{ github.ref_name }}
+          # Automatically extracts changelog items out of commit text or lets you edit it manually
+          generate_release_notes: true
+          draft: false
+          prerelease: false
+          # Searches for and grabs the dynamically named zip output from your script
+          files: |
+            *.zip
