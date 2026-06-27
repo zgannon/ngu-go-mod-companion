@@ -21,7 +21,7 @@
     }
   },
   "background": {
-    "service_worker": "background.js"
+    "service_worker": "src/background.js"
   },
   "side_panel": {
     "default_path": "src/popup/popup.html?mode=sidepanel"
