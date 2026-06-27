@@ -57,7 +57,7 @@ This helps avoid accidental target wipes from misclicks.
 
 - Gear Optimizer by gmiclotte: https://gmiclotte.github.io/gear-optimizer
 - NGU GO integration bookmarklet ideas from jshepler's NGU mods repo: https://github.com/jshepler/jshepler.ngu.mods
-- NGU Idle game by 4G and all core game systems this helper builds around.
+- NGU Idle game by 4G and all core game systems this helper builds around: https://store.steampowered.com/app/1147690/NGU_IDLE/
 - NGU Idle Fandom Wiki: https://ngu-idle.fandom.com/wiki/NGU_Idle_Wiki
 - Sayo's NGU guide: https://sayolove.github.io/ngu-guide/
 
