@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>NGU GO Mod Companion</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header>
+        <div class="header-row">
+          <div class="brand-wrap">
+            <img
+              class="brand-icon"
+              src="../../icons/icon-128.png"
+              width="36"
+              height="36"
+              alt=""
+              aria-hidden="true"
+            />
+            <h1>NGU GO Mod Companion</h1>
+          </div>
+          <div class="header-actions">
+            <button
+              id="openPopup"
+              class="open-popup"
+              type="button"
+              aria-label="Open popup"
+              title="Open popup"
+            >
+              🗔
+            </button>
+            <button
+              id="openPopout"
+              class="open-popout"
+              type="button"
+              aria-label="Open popout window"
+              title="Open popout window"
+            >
+              ↗
+            </button>
+            <button
+              id="openSidePanel"
+              class="open-side-panel"
+              type="button"
+              aria-label="Open side panel"
+              title="Open side panel"
+            >
+              ▤
+            </button>
+            <button
+              id="themeToggle"
+              class="theme-toggle"
+              type="button"
+              aria-label="Toggle theme"
+              title="Toggle theme"
+            >
+              ☾
+            </button>
+          </div>
+        </div>
+        <p>Run helper actions on the active Gear Optimizer tab.</p>
+      </header>
+
+      <section class="status-row status-card">
+        <button id="tabStatus" class="status status-idle" type="button" disabled>
+          Checking tab...
+        </button>
+      </section>
+
+      <section class="action-card accordion" data-accordion="sync-ngu-go">
+        <h2 class="accordion-heading">
+          <button
+            class="accordion-trigger"
+            type="button"
+            aria-expanded="true"
+            aria-controls="panel-sync-ngu-go"
+          >
+            <span>Sync NGU → GO</span>
+            <span class="accordion-icon" aria-hidden="true">▾</span>
+          </button>
+        </h2>
+        <div id="panel-sync-ngu-go" class="accordion-panel grid" role="region">
+          <button data-action="ngu2go_equipped">
+            Current Equipped to slot "current"
+          </button>
+          <button data-action="ngu2go_nakedemr">Naked EMR3 to Hardcap Input</button>
+          <button data-action="ngu2go_augstats">Aug Stats</button>
+          <button data-action="ngu2go_ngustats">NGU Stats</button>
+          <button data-action="ngu2go_hacks_no_targets">
+            Hack Stats (keep targets)
+          </button>
+          <button data-action="ngu2go_wishstats">Wish Stats</button>
+        </div>
+      </section>
+
+      <section class="action-card accordion" data-accordion="sync-go-ngu">
+        <h2 class="accordion-heading">
+          <button
+            class="accordion-trigger"
+            type="button"
+            aria-expanded="true"
+            aria-controls="panel-sync-go-ngu"
+          >
+            <span>Sync GO → NGU</span>
+            <span class="accordion-icon" aria-hidden="true">▾</span>
+          </button>
+        </h2>
+        <div id="panel-sync-go-ngu" class="accordion-panel grid" role="region">
+          <button data-action="go2ngu_loadouts">Loadouts to NGU</button>
+          <button data-action="go2ngu_hacktargets">Hack Targets to NGU</button>
+        </div>
+      </section>
+
+      <section class="action-card accordion" data-accordion="custom-helpers">
+        <h2 class="accordion-heading">
+          <button
+            class="accordion-trigger"
+            type="button"
+            aria-expanded="false"
+            aria-controls="panel-custom-helpers"
+          >
+            <span>Custom Helpers</span>
+            <span class="accordion-icon" aria-hidden="true">▾</span>
+          </button>
+        </h2>
+        <div
+          id="panel-custom-helpers"
+          class="accordion-panel grid"
+          role="region"
+          hidden
+        >
+          <button data-action="custom_set_hack_targets_max">
+            Set All Hack Targets To Max
+          </button>
+        </div>
+      </section>
+
+      <section class="danger accordion" data-accordion="danger-zone">
+        <h2 class="accordion-heading">
+          <button
+            class="accordion-trigger"
+            type="button"
+            aria-expanded="false"
+            aria-controls="panel-danger-zone"
+          >
+            <span>Danger Zone</span>
+            <span class="accordion-icon" aria-hidden="true">▾</span>
+          </button>
+        </h2>
+        <div id="panel-danger-zone" class="accordion-panel" role="region" hidden>
+          <p>
+            This action also resets GO hack targets to current levels. Use only when you
+            intentionally want to overwrite targets.
+          </p>
+          <button id="armDanger" class="danger-ghost">Arm 5s Confirmation</button>
+          <button
+            id="dangerHackWithTargets"
+            data-action="ngu2go_hacks_with_targets"
+            disabled
+          >
+            Hack Stats + Reset Targets
+          </button>
+        </div>
+      </section>
+
+      <section class="action-card accordion" data-accordion="helpful-links">
+        <h2 class="accordion-heading">
+          <button
+            class="accordion-trigger"
+            type="button"
+            aria-expanded="false"
+            aria-controls="panel-helpful-links"
+          >
+            <span>Helpful Links</span>
+            <span class="accordion-icon" aria-hidden="true">▾</span>
+          </button>
+        </h2>
+        <div
+          id="panel-helpful-links"
+          class="accordion-panel links-list"
+          role="region"
+          hidden
+        >
+          <a href="../about/about.html" target="_blank" rel="noopener noreferrer">
+            About & Credits
+          </a>
+          <a
+            href="https://gmiclotte.github.io/gear-optimizer"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            NGU Gear Optimizer
+          </a>
+          <a
+            href="https://ngu-idle.fandom.com/wiki/NGU_Idle_Wiki"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            NGU Idle Fandom Wiki
+          </a>
+          <a
+            href="https://github.com/jshepler/jshepler.ngu.mods"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            JShepler NGU Mods Repo
+          </a>
+          <a
+            href="https://sayolove.github.io/ngu-guide/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Sayo's NGU Guide
+          </a>
+        </div>
+      </section>
+
+      <section class="output output-card">
+        <p id="result" class="result" aria-live="polite"></p>
+      </section>
+
+      <footer class="meta-footer">
+        <span>v<span id="popupVersion">unknown</span></span>
+        <span>by <span id="popupAuthor">unknown</span></span>
+      </footer>
+    </main>
+
+    <script src="popup.js"></script>
+  </body>
+</html>

@@ -1,0 +1,134 @@
+:root {
+  --surface: #ffffff;
+  --surface-2: #f8f9fa;
+  --surface-3: #f1f3f4;
+  --text: #202124;
+  --muted: #5f6368;
+  --outline: #dadce0;
+  --link: #1a73e8;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --surface: #202124;
+    --surface-2: #292a2d;
+    --surface-3: #303134;
+    --text: #e8eaed;
+    --muted: #9aa0a6;
+    --outline: #5f6368;
+    --link: #8ab4f8;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Roboto", "Segoe UI", sans-serif;
+  background: var(--surface);
+  color: var(--text);
+}
+
+.page {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.hero {
+  border: 1px solid var(--outline);
+  border-radius: 14px;
+  background: var(--surface-2);
+  padding: 16px;
+}
+
+.hero-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.hero-head img {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+}
+
+h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.subtitle {
+  margin: 8px 0 0;
+  color: var(--muted);
+}
+
+.status {
+  margin-top: 16px;
+  border: 1px solid var(--outline);
+  border-radius: 14px;
+  background: var(--surface-2);
+  padding: 12px 14px;
+  color: var(--muted);
+}
+
+.section {
+  margin-top: 16px;
+  border: 1px solid var(--outline);
+  border-radius: 14px;
+  background: var(--surface-3);
+  padding: 14px;
+}
+
+h2 {
+  margin: 0 0 10px;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+}
+
+ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+li {
+  margin: 8px 0;
+  line-height: 1.4;
+}
+
+a {
+  color: var(--link);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+code {
+  background: var(--surface-2);
+  border: 1px solid var(--outline);
+  border-radius: 6px;
+  padding: 1px 6px;
+  font-family: "Consolas", "Courier New", monospace;
+  font-size: 12px;
+}
+
+.meta-footer {
+  margin-top: 16px;
+  color: var(--muted);
+  font-size: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+}
+
+.hidden {
+  display: none;
+}

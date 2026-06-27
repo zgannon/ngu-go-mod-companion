@@ -1,0 +1,29 @@
+{
+  "manifest_version": 3,
+  "name": "NGU GO Mod Companion",
+  "author": "zgannon",
+  "description": "NGU GO Mod Companion (NGMC): run GO integration helpers from popup buttons.",
+  "version": "0.1.0",
+  "permissions": ["activeTab", "scripting", "tabs", "windows", "sidePanel"],
+  "host_permissions": ["https://gmiclotte.github.io/*", "http://localhost:8088/*"],
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  "action": {
+    "default_title": "NGU GO Mod Companion",
+    "default_popup": "src/popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "side_panel": {
+    "default_path": "src/popup/popup.html?mode=sidepanel"
+  }
+}

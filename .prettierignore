@@ -1,0 +1,11 @@
+icons/**
+node_modules/**
+coverage/**
+*.png
+*.jpg
+*.jpeg
+*.ico
+*.zip
+*.crx
+*.pem
+package-lock.json
