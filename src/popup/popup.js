@@ -26,7 +26,6 @@ const helpfulLinksTrigger = document.querySelector(
   '[data-accordion="helpful-links"] .accordion-trigger',
 );
 const THEME_STORAGE_KEY = "ngu-go-helper-theme";
-const SECTION_ORDER_STORAGE_KEY = "ngu-go-helper-popout-section-order";
 const POPUP_PAGE_URL = "src/popup/popup.html";
 const SIDE_PANEL_PAGE_URL = `${POPUP_PAGE_URL}?mode=sidepanel`;
 const viewMode = new URLSearchParams(window.location.search).get("mode");
@@ -437,116 +436,6 @@ async function openSidePanel() {
   if (isPopupMode || isPopoutMode) {
     window.close();
     return;
-  }
-}
-
-function persistPopoutSectionOrder() {
-  if (!isPopoutMode) {
-    return;
-  }
-
-  const orderedIds = [
-    ...document.querySelectorAll("main.app > section[data-accordion]"),
-  ]
-    .map((section) => section.dataset.accordion)
-    .filter(Boolean);
-  localStorage.setItem(SECTION_ORDER_STORAGE_KEY, JSON.stringify(orderedIds));
-}
-
-function applyStoredPopoutSectionOrder() {
-  if (!isPopoutMode || !appRoot) {
-    return;
-  }
-
-  const raw = localStorage.getItem(SECTION_ORDER_STORAGE_KEY);
-  if (!raw) {
-    return;
-  }
-
-  let orderedIds;
-  try {
-    orderedIds = JSON.parse(raw);
-  } catch {
-    return;
-  }
-
-  if (!Array.isArray(orderedIds) || !orderedIds.length) {
-    return;
-  }
-
-  const sectionsById = new Map(
-    [...document.querySelectorAll("main.app > section[data-accordion]")].map(
-      (section) => [section.dataset.accordion, section],
-    ),
-  );
-
-  for (const sectionId of orderedIds) {
-    const section = sectionsById.get(sectionId);
-    if (section) {
-      appRoot.append(section);
-    }
-  }
-}
-
-function initializePopoutReordering() {
-  if (!isPopoutMode || !appRoot) {
-    return;
-  }
-
-  applyStoredPopoutSectionOrder();
-
-  const sections = [...document.querySelectorAll("main.app > section[data-accordion]")];
-  let draggingSection = null;
-
-  const clearDropTargets = () => {
-    for (const section of sections) {
-      section.classList.remove("drop-target");
-    }
-  };
-
-  for (const section of sections) {
-    const trigger = section.querySelector(".accordion-trigger");
-    if (!trigger) {
-      continue;
-    }
-
-    trigger.draggable = true;
-    trigger.title = "Drag to reorder this section";
-
-    trigger.addEventListener("dragstart", () => {
-      draggingSection = section;
-      section.classList.add("dragging");
-      clearDropTargets();
-    });
-
-    trigger.addEventListener("dragend", () => {
-      section.classList.remove("dragging");
-      draggingSection = null;
-      clearDropTargets();
-      persistPopoutSectionOrder();
-    });
-
-    section.addEventListener("dragover", (event) => {
-      if (!draggingSection || draggingSection === section) {
-        return;
-      }
-
-      event.preventDefault();
-      clearDropTargets();
-      section.classList.add("drop-target");
-
-      const bounds = section.getBoundingClientRect();
-      const insertBefore = event.clientY < bounds.top + bounds.height / 2;
-      appRoot.insertBefore(
-        draggingSection,
-        insertBefore ? section : section.nextSibling,
-      );
-    });
-
-    section.addEventListener("drop", (event) => {
-      event.preventDefault();
-      clearDropTargets();
-    });
   }
 }
 
@@ -964,7 +853,6 @@ applySystemPrimaryColor();
 applyLayoutMode();
 applyTheme(getStoredTheme());
 initializeAccordions();
-initializePopoutReordering();
 populatePopupMetaFooter();
 registerBrowserContextListeners();
 

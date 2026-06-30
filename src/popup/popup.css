@@ -188,19 +188,6 @@ header h1 {
   display: none;
 }
 
-:root[data-layout="popout"] section[data-accordion] {
-  cursor: grab;
-}
-
-:root[data-layout="popout"] section[data-accordion].dragging {
-  opacity: 0.6;
-}
-
-:root[data-layout="popout"] section[data-accordion].drop-target {
-  outline: 2px dashed color-mix(in srgb, var(--primary) 65%, var(--outline) 35%);
-  outline-offset: 3px;
-}
-
 header p {
   margin: 6px 0 0;
   color: var(--on-surface-variant);
