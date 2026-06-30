@@ -15,7 +15,6 @@ const actionButtons = [...document.querySelectorAll("button[data-action]")];
 const accordionTriggers = [
   ...document.querySelectorAll(".accordion .accordion-trigger"),
 ];
-const appRoot = document.querySelector("main.app");
 const syncNguGoSection = document.querySelector('[data-accordion="sync-ngu-go"]');
 const syncGoNguSection = document.querySelector('[data-accordion="sync-go-ngu"]');
 const customHelpersSection = document.querySelector(
