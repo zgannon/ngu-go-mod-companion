@@ -1,6 +1,6 @@
 {
   "name": "ngu-go-mod-companion",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "description": "NGU GO Mod Companion Chrome extension",
   "license": "MIT",

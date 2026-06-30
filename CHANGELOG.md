@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on Keep a Changelog.
 
+## [0.1.1] - 2026-06-29
+
+### Removed
+
+- Drag-to-reorder accordion sections in the popout view (didn't work, don't want it). The popout now behaves consistently with the popup and side panel views.
+
 ## [0.1.0] - 2026-06-27
 
 ### Added
