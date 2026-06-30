@@ -30,11 +30,22 @@ jobs:
       - name: Run Build (Format, Lint, and Zip Archive Production)
         run: npm run build
 
+      - name: Extract Changelog Notes
+        id: changelog
+        run: |
+          VERSION="${{ github.ref_name }}"
+          VERSION="${VERSION#v}"
+          NOTES=$(awk "/^## \[${VERSION}\]/{found=1; next} found && /^## \[/{exit} found{print}" CHANGELOG.md | sed '/./,$!d' | sed -e :a -e '/^\n*$/{$d;N;ba}')
+          echo "notes<<EOF" >> $GITHUB_OUTPUT
+          echo "$NOTES" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
       - name: Create GitHub Release & Upload Production Zip
         uses: softprops/action-gh-release@v2
         with:
           name: Release ${{ github.ref_name }}
-          # Automatically extracts changelog items out of commit text or lets you edit it manually
+          body: ${{ steps.changelog.outputs.notes }}
+          # Appends the auto-generated "Full Changelog" comparison link below the body
           generate_release_notes: true
           draft: false
           prerelease: false
